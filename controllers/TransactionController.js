@@ -2,43 +2,55 @@ const express = require("express");
 const transactions = express.Router();
 const transactionsArray = require("../models/transactions.js");
 
+// INDEX
 transactions.get("/", (req, res) => {
   res.json(transactionsArray);
 });
 
 // SHOW
-transactions.get("/transactions/:id", (req, res) => {
-  if (transactionsArray[req.params.arrayIndex]) {
-    res.json(transactionsArray[req.params.arrayIndex]);
+transactions.get("/:id", (req, res) => {
+  const id = parseInt(req.params.id);
+  const transaction = transactionsArray.find((transaction) => transaction.id === id);
+
+  if (transaction) {
+    res.json(transaction);
   } else {
     res.status(404).json({ error: "Not Found" });
   }
 });
 
 // CREATE
-transactions.post("/transactions", (req, res) => {
-  transactionsArray.push(req.body);
-  res.json(transactionsArray[transactionsArray.length - 1]);
+transactions.post("/", (req, res) => {
+  const newTransaction = req.body;
+  transactionsArray.push(newTransaction);
+  res.json(newTransaction);
 });
 
 // DELETE
-transactions.delete("/transactions/:id", (req, res) => {
-  if (transactionsArray[req.params.indexArray]) {
-    const deletedBookMark = transactionsArray.splice(req.params.indexArray, 1);
-    res.status(200).json(deletedBookMark);
+transactions.delete("/:id", (req, res) => {
+  const id = parseInt(req.params.id);
+  const index = transactionsArray.findIndex((transaction) => transaction.id === id);
+
+  if (index !== -1) {
+    const deletedTransaction = transactionsArray.splice(index, 1);
+    res.status(200).json(deletedTransaction);
   } else {
     res.status(404).json({ error: "Not Found" });
   }
 });
-module.exports = transactions;
 
 // UPDATE
-transactions.put("/transactions/:id", (req, res) => {
-    if (transactionsArray[req.params.arrayIndex]) {
-      transactionsArray[req.params.arrayIndex] = req.body;
-      res.status(200).json(transactionsArray[req.params.arrayIndex]);
-    } else {
-      res.status(404).json({ error: "Not Found" });
-    }
-  });
-  
+transactions.put("/:id", (req, res) => {
+  const id = parseInt(req.params.id);
+  const updatedTransaction = req.body;
+  const index = transactionsArray.findIndex((transaction) => transaction.id === id);
+
+  if (index !== -1) {
+    transactionsArray[index] = updatedTransaction;
+    res.status(200).json(updatedTransaction);
+  } else {
+    res.status(404).json({ error: "Not Found" });
+  }
+});
+
+module.exports = transactions;

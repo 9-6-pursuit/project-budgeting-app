@@ -17,8 +17,10 @@ app.get("/", (req, res) => {
 });
 
 
-const transactionsController = require("./controllers/TransactionController.js");
+const transactionsController = require("./controllers/TransactionController");
 app.use("/transactions", transactionsController);
+
+
 
 // 404 PAGE
 app.get("*", (req, res) => {

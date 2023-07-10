@@ -8,7 +8,7 @@ module.exports = [
       category: "income"
     },
     {
-      id: 35,
+      id: 1,
       item_name: "Tuition",
       amount: 1700,
       date: "07/05/2023",
@@ -16,7 +16,7 @@ module.exports = [
       category: "Savings"
     },
     {
-      id: 12,
+      id: 2,
       item_name: "Saturday night",
       amount: 250,
       date: "07/08/2023",
@@ -24,7 +24,7 @@ module.exports = [
       category: "Entertainment"
     },
     {
-      id: 48,
+      id: 3,
       item_name: "Groceries",
       amount: 150,
       date: "07/10/2023",
@@ -32,7 +32,7 @@ module.exports = [
       category: "Expenses"
     },
     {
-      id: 79,
+      id: 4,
       item_name: "Dinner with friends",
       amount: 80,
       date: "07/07/2023",
@@ -40,7 +40,7 @@ module.exports = [
       category: "Entertainment"
     },
     {
-      id: 52,
+      id: 5,
       item_name: "Gas bill",
       amount: 50,
       date: "07/06/2023",
