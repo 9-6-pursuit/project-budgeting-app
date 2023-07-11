@@ -10,7 +10,9 @@ transactions.get("/", (req, res) => {
 // SHOW
 transactions.get("/:id", (req, res) => {
   const id = parseInt(req.params.id);
-  const transaction = transactionsArray.find((transaction) => transaction.id === id);
+  const transaction = transactionsArray.find(
+    (transaction) => transaction.id === id
+  );
 
   if (transaction) {
     res.json(transaction);
@@ -22,16 +24,17 @@ transactions.get("/:id", (req, res) => {
 // CREATE
 transactions.post("/", (req, res) => {
   const newTransaction = req.body;
-  newTransaction.id = transactionsArray.length; // Generate new ID
+  newTransaction.id = transactionsArray.length + 1; // Generate new ID
   transactionsArray.push(newTransaction);
   res.status(201).json(newTransaction); // Return created transaction with ID
 });
 
-
 // DELETE
 transactions.delete("/:id", (req, res) => {
   const id = parseInt(req.params.id);
-  const index = transactionsArray.findIndex((transaction) => transaction.id === id);
+  const index = transactionsArray.findIndex(
+    (transaction) => transaction.id === id
+  );
 
   if (index !== -1) {
     const deletedTransaction = transactionsArray.splice(index, 1);
@@ -45,7 +48,9 @@ transactions.delete("/:id", (req, res) => {
 transactions.put("/:id", (req, res) => {
   const id = parseInt(req.params.id);
   const updatedTransaction = req.body;
-  const index = transactionsArray.findIndex((transaction) => transaction.id === id);
+  const index = transactionsArray.findIndex(
+    (transaction) => transaction.id === id
+  );
 
   if (index !== -1) {
     transactionsArray[index] = updatedTransaction;

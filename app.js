@@ -11,6 +11,7 @@ app.use(cors());
 
 // ROUTES
 const transactionsController = require("./controllers/TransactionController");
+const transactionsArray = require("./models/transactions.js"); // Add this line
 app.use("/transactions", transactionsController);
 
 app.get("/", (req, res) => {
@@ -19,7 +20,9 @@ app.get("/", (req, res) => {
 
 app.get("/transactions/:id", (req, res) => {
   const id = parseInt(req.params.id);
-  const transaction = transactionsArray.find((transaction) => transaction.id === id);
+  const transaction = transactionsArray.find(
+    (transaction) => transaction.id === id
+  );
 
   if (transaction) {
     res.json(transaction);
