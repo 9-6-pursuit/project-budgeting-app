@@ -22,9 +22,11 @@ transactions.get("/:id", (req, res) => {
 // CREATE
 transactions.post("/", (req, res) => {
   const newTransaction = req.body;
+  newTransaction.id = transactionsArray.length; // Generate new ID
   transactionsArray.push(newTransaction);
-  res.json(newTransaction);
+  res.status(201).json(newTransaction); // Return created transaction with ID
 });
+
 
 // DELETE
 transactions.delete("/:id", (req, res) => {
